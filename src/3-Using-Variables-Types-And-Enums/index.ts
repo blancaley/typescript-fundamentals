@@ -1,12 +1,14 @@
 // string, number, boolean, array, undefined, null, any
 
+// Union type
 let firstName: string | null;
 firstName = "Jake";
 
 let age: number;
 age = 45;
 
-let hasPurchased = true;
+// Type inference. TypeScript compiler will automatically infer the type on the right side of the equals.
+let hasPurchased = true; 
 
 let productNames: string[] = [];
 productNames.push('Basketball');
