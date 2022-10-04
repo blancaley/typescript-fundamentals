@@ -108,6 +108,12 @@ function runTheLearningSamples() {
     return sampleProducts.find(p => id === p.id);
   }
 
+  // Arrow function
+  const getProductById2 = (id: number): ProductType | undefined =>
+    sampleProducts.find(p => id === p.id);
+
+    getProductById2(10);
+
   console.log(`${prefix} return ProductType`);
   console.log(getProductById(10));
 
