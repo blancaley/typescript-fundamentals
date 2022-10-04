@@ -1,7 +1,7 @@
 // string, number, boolean, array, undefined, null, any
 
 let firstName: string | null;
-firstName = 'Dan';
+firstName = "Jake";
 
 let age: number;
 age = 45;
@@ -22,12 +22,18 @@ if (productType === 'sports') {
 }
 
 // Using Enums
+// It allows us to find a constant list of values
+// To avoid magic strings 
+
+// Enum generates extra code, that's going to impact your bundle size, depending on how many items you have. 
+// Add the word const on front, const enum, so it doesn't write out any enum at all. The downside of this is I have no way to get back to the string equivalent. JS only adds the comment next to it.
+
 enum ProductType {
   Sports,
   HomeGoods,
   Groceries,
 }
-let pt = ProductType.Sports;
-if (pt === ProductType.Sports) {
+let pt = ProductType.HomeGoods;
+if (pt === ProductType.HomeGoods) {
   console.log('Found sports product type.');
 }
