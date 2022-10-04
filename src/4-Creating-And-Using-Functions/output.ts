@@ -1,3 +1,5 @@
+import { productsURL } from "../lib";
+
 const prefix = '🐉 ';
 
 type ProductType = {
@@ -7,7 +9,43 @@ type ProductType = {
 }
 
 export default async function updateOutput(id: string) {
-  // Todo
+  const products = await getProducts();
+  const output = document.querySelector(`#${id}`);
+  const html = layoutProducts(products);
+
+  if(output && html) {
+    output.innerHTML = html;
+  }
+}
+
+function layoutProducts(products: ProductType[]) {
+  const items = products.map(p => {
+    const productHtml = `
+    <span class="card-id">#${p.id}</span>
+      <i class="card-icon" ${p.icon} fa-lg></i>
+    <span class="card-name">${p.name}</span>
+    `;
+    const cardHtml = `
+    <li>
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+          ${productHtml}
+          </div>
+        </div>
+      </div>
+    </li>
+    `;
+    return cardHtml;
+  });
+  let productsHtml = `<ul>${items.join("")}</ul>`;
+  return productsHtml;
+}
+
+async function getProducts(): Promise<ProductType[]> {
+  const response: Response = await fetch(productsURL);
+  const products: ProductType[] = await response.json();
+  return products;
 }
 
 // Run our samples
