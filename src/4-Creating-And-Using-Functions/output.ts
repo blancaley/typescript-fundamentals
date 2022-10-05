@@ -131,7 +131,7 @@ function runTheLearningSamples() {
   displayProducts(sampleProducts);
 
   // Optional parameters: Add question mark
-  const getRandomInt = (max: number) => Math.floor(Math.random() * max);
+  const getRandomInt = (max: number = 1000) => Math.floor(Math.random() * max);
 
   function createProduct(name: string, icon?: string,): ProductType {
     const id = getRandomInt(1000);
@@ -146,6 +146,25 @@ function runTheLearningSamples() {
   console.log(`${prefix} Optional parameters`)
   let pinapple = createProduct("pinapple", "pine-apple.jpg");
   let mango = createProduct("mango");
+  console.log(pinapple, mango);
+
+  // Default Parameters
+  function createProductWithDefaults(
+    name: string, 
+    icon: string = "generic-fruit.jpg"
+    ): ProductType {
+    const id = getRandomInt();
+
+    return {
+      id, 
+      name, 
+      icon
+    }
+  }
+
+  console.log(`${prefix} Default parameters`)
+  pinapple = createProductWithDefaults("pinapple", "pine-apple.jpg");
+  mango = createProductWithDefaults("mango");
   console.log(pinapple, mango);
 
 }
