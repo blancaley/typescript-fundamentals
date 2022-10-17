@@ -167,4 +167,20 @@ function runTheLearningSamples() {
   mango = createProductWithDefaults("mango");
   console.log(pinapple, mango);
 
+  // Rest parameters: When you don't know how many parameters you might be passing in
+  function buildAddress(street: string, city: string, ...restOfAdress: string[]) {
+    console.table(restOfAdress);
+    const address = `${street} ${city} ${restOfAdress.join(" ")}`;
+    return address;
+  }
+
+  const someAddress = buildAddress(
+    "1 lois lane", // street
+    "smallville", // city
+    "apt 101",  // rest arg [0]
+    "area 51",  // rest arg [1]
+    "mystery country"); // rest arg [2]
+
+  console.log(`${prefix} Rest parameters`);
+  console.log(someAddress);
 }
