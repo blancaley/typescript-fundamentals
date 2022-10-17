@@ -5,3 +5,7 @@ Consider using generics when you want your code (functions, interfaces or classe
 
 Generics with TypeScript allow you to write code that consume these components using your most appropriate types without otherwise duplicating the code.
 
+## Reusable Code and Generics
+T or Type represents the type that is going to be passed in.
+
+The function will handle any type that we pass in. The argument and return are going to be the same type.

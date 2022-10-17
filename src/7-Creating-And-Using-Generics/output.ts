@@ -78,5 +78,41 @@ async function getList<T>(url: string): Promise<T[]> {
 runTheLearningSamples();
 
 async function runTheLearningSamples() {
- 
-}
+  // Repetitive code
+  // Argument type and return type are same type
+  // This function expects that you are going to pass in a number in and get a number back out.
+  function whatIsIt_number(arg: number) : number {
+    return arg;
+  }
+
+  console.log(`${prefix} Generics Overview`);
+  console.log(whatIsIt_number(11));
+
+  function whatIsIt_string(arg: string) : string {
+    return arg;
+  }
+  console.log(whatIsIt_string("blanca"));
+
+  // "Any" works but you lose all type safety.
+  function whatIsIt_any(arg: any) : any {
+    return arg;
+  }
+  console.log(whatIsIt_any(11));
+  console.log(whatIsIt_any("john"));
+
+  // Reusable code with generics and types
+  // One function that handles any type that we pass in
+  // This function is expecting to have a Type passed in
+  // Type or T is a variable that represents a type
+  function whatIsIt_typed<T>(arg: T) {
+    return arg;
+  }
+
+  // "number" is the type that will be passed in.
+  // The T becomes a number. The argument and return value have to be a number.
+  let n = whatIsIt_typed<number>(11);
+  let s = whatIsIt_typed<string>("blanca");
+  let b = whatIsIt_typed<boolean>(true);
+
+  console.log(n, s, b);
+ }
