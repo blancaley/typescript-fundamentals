@@ -1,5 +1,6 @@
+import { Product } from './interfaces';
 // Class foundation to build upon (extend)
-abstract class ProductBase {
+abstract class ProductBase implements Product {
   constructor(public id: number, public name: string, public icon: string) { }
   
   validate() : boolean {
