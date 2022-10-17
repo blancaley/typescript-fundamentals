@@ -1,3 +1,6 @@
+// Interfaces are code contracts
+// Use interfaces to define the shape of data
+
 // Interface definitions can be used to represent 
 // the shape of an OBJECT-like data structure
 export interface Product {
