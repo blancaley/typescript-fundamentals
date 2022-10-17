@@ -84,6 +84,7 @@ class ProductOutput {
         const icon = this.getFormElement('#product-icon');
 
         // Validate data for product
+        
         const product = new FoodProduct(id, name.value, icon.value);
         if (product.validate()) {
           const index = this.products.findIndex((p) => p.id === id);

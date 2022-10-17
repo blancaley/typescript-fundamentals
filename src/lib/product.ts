@@ -1,5 +1,5 @@
 // Creating and using a class
-class FoodProduct {
+export class FoodProduct {
   // properties/fields.
   // TS config strict - use default values, empty strings, so they're not undefined at run time
 
@@ -12,6 +12,10 @@ class FoodProduct {
 
   }
   // functions
+  // the !! operator converts any object to a boolean value
+  validate() : boolean {
+    return !!this.id && !!this.name && !!this.icon;
+  }
 }
 
 // import { Product } from './interfaces';
