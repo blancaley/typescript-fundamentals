@@ -1,8 +1,9 @@
 // Class foundation to build upon (extend)
-class ProductBase {
+abstract class ProductBase {
   constructor(public id: number, public name: string, public icon: string) { }
   
   validate() : boolean {
+    throw new Error("Not implemented");
   }
 }
 
