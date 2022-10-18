@@ -116,7 +116,7 @@ async function runTheLearningSamples() {
   }
 
   // "number" is the type that will be passed in.
-  // The T becomes a number. The argument and return value have to be a number.
+  // The T becomes a number. The argument and return value has to be a number.
   let n = whatIsIt_typed<number>(11);
   let s = whatIsIt_typed<string>("blanca");
   let b = whatIsIt_typed<boolean>(true);
@@ -138,4 +138,28 @@ async function runTheLearningSamples() {
   }
 
   await getData();
+
+
+  interface Model<T> {
+    items: T[] | undefined;
+    getItems: () => Promise<T[]>;
+    getItemById: (id: number) => T | undefined;
+  }
+
+  class FoodModel implements Model<FoodProduct> {
+    public items: FoodProduct[] | undefined;
+    async getItems() : Promise<FoodProduct[]> {
+      this.items = await getList<FoodProduct>(productsURL);
+      return this.items;
+    }
+    getItemById(id: number) : FoodProduct | undefined {
+      return this.items ? this.items.find((item) => (id = item.id)) : undefined;
+    }
+  }
+
+  const foodModel: FoodModel = new FoodModel();
+  await foodModel.getItems();
+  console.log(`${prefix} Generic Interface`);
+  console.table(foodModel.items);
+
  }
