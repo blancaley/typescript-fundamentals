@@ -24,6 +24,7 @@ const foodModel = new GenericModel<FoodProduct>(productsURL);
 
 export default async function updateOutput(id: string = 'output') {
   // const products = await getProducts();
+  // Tell the type and the url
   // const products = await getList<FoodProduct>(productsURL);
   const products = await foodModel.getItems();
 
@@ -59,12 +60,18 @@ function layoutProducts(products: FoodProduct[]): string {
   return productsHtml;
 }
 
+// The return type of this function is a generic
+// This generic is saying there's a promise of FoodProduct array
+// This is a specific function, it's better to be more specific if we know exactly that it's going to be FoodProduct
 async function getProducts(): Promise<FoodProduct[]> {
   const response: Response = await fetch(productsURL);
   const products: FoodProduct[] = await response.json();
   return products;
 }
 
+// Another way to do the same thing 
+// Use this if you want to fetch other things, such as orders, employees, customers...
+// get list of type "T" array
 async function getList<T>(url: string): Promise<T[]> {
   const response: Response = await fetch(url);
   const items: T[] = await response.json();
@@ -115,4 +122,20 @@ async function runTheLearningSamples() {
   let b = whatIsIt_typed<boolean>(true);
 
   console.log(n, s, b);
+
+  interface Customer {
+    id: number;
+    name: string;
+  }
+
+  async function getData() {
+    console.log(`${prefix} Generic Functions`)
+    const products = await getList<FoodProduct>(productsURL);
+    console.table(products);
+
+    const customers = await getList<Customer>(customersURL);
+    console.table(customers);
+  }
+
+  await getData();
  }
