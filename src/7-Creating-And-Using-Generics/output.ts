@@ -6,6 +6,7 @@ interface HasId {
   id: number;
 }
 
+// Class with all the implementation details needed
 class GenericModel<T extends HasId> {
   public items: T[] | undefined;
   constructor(public url: string) {}
@@ -23,9 +24,11 @@ class GenericModel<T extends HasId> {
 const foodModel = new GenericModel<FoodProduct>(productsURL);
 
 export default async function updateOutput(id: string = 'output') {
+  // Specific function
   // const products = await getProducts();
-  // Tell the type and the url
+  // More reusable using generics: Get a list of type FoodProduct
   // const products = await getList<FoodProduct>(productsURL);
+  // More generic class that knows what kind of items to get
   const products = await foodModel.getItems();
 
   const output = document.querySelector(`#${id}`);
@@ -139,7 +142,6 @@ async function runTheLearningSamples() {
 
   await getData();
 
-
   interface Model<T> {
     items: T[] | undefined;
     getItems: () => Promise<T[]>;
@@ -162,4 +164,12 @@ async function runTheLearningSamples() {
   console.log(`${prefix} Generic Interface`);
   console.table(foodModel.items);
 
+  const genericFoodModel = new GenericModel<FoodProduct>(productsURL);
+  const genericCustomerModel = new GenericModel<Customer>(customersURL);
+  await genericFoodModel.getItems();
+  await genericCustomerModel.getItems();
+
+  console.log(`${prefix} Generic Class`)
+  console.table(genericFoodModel.items);
+  console.table(genericCustomerModel.items);
  }
