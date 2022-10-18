@@ -172,4 +172,18 @@ async function runTheLearningSamples() {
   console.log(`${prefix} Generic Class`)
   console.table(genericFoodModel.items);
   console.table(genericCustomerModel.items);
+
+  const model: FoodModel = new FoodModel();
+  await model.getItems();
+  // Not allowed to change values
+  const foodItem: Readonly<FoodProduct | undefined> = model.getItemById(10);
+  if (foodItem) {
+    // foodItem.name = "some name";
+    // foodItem.icon = "some icon";
+  }
+
+  const pear = { name: "pear"};
+  // const pearFood: FoodProduct = pear;
+  // Can have part of that definition
+  const pearFood: Partial<FoodProduct> = pear;
  }
